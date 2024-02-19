@@ -158,7 +158,7 @@ class NCol(layout.Layout):
       leaf_ids = {leaf.id for leaf in workspace.leaves()}
       if old_leaf_ids != leaf_ids:
         cycle_windows.swap_with_prev_window(
-          i3, event, window=workspace.find_by_id(event.container.id))
+          i3, event, window=workspace.find_by_id(event.container.id), focus_after_swap=False)
         should_reflow = True
 
       # Similarly, fullscreen windows are created as normal windows and them
