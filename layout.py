@@ -202,14 +202,6 @@ def reflecty_dispatcher(i3: i3ipc.Connection, event: i3ipc.Event) -> None:
 def relayout_old_workspace(i3: i3ipc.Connection, new_workspace: i3ipc.Con) -> None:
   old_workspace = common.get_focused_workspace(i3)
   logging.debug(f"Detected container move from workspace {old_workspace.id} to {new_workspace.id}.")
-
-  # Necessary for move left/right between outputs.
-  if old_workspace.id == new_workspace.id:
-    i3.command("workspace back_and_forth")
-    old_workspace = common.get_focused_workspace(i3)
-    i3.command("workspace back_and_forth")
-    logging.debug(f"Old and new workspaces were identical, actual old workspace is {old_workspace.id}.")
-
   old_workspace_layout = get_layout(old_workspace)
   old_workspace_layout.layout(i3, None)
 
